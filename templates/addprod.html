@@ -1,0 +1,143 @@
+{% extends 'base.html' %} {% block content %}
+<div class="d-flex justify-content-center">
+  <form action="/adduser" method="POST" class="p-4" style="
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 20px;
+      width: 70%;
+    ">
+    <center>
+      <h2>اضافت عميل</h2>
+    </center>
+    <br />
+    {% if mes %}
+    <div class="alert alert-success" role="alert">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark-check-fill" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M2 15.5V2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.74.439L8 13.069l-5.26 2.87A.5.5 0 0 1 2 15.5zm8.854-9.646a.5.5 0 0 0-.708-.708L7.5 7.793 6.354 6.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z" />
+      </svg>
+      {{ mes }}
+    </div>
+    {% endif %}
+    <br />
+    <div class="mb-3">
+      <div class="input-group">
+        <span class="input-group-text" dir="rtl">إسم المنتج</span>
+        <input type="text" class="form-control" id="name" name="name" placeholder="سماد نب...." aria-describedby="addon-wrapping" dir="rtl" />
+      </div>
+    </div>
+    <div class="mb-3">
+      <div class="input-group">
+        <span class="input-group-text" dir="rtl"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-upc-scan" viewBox="0 0 16 16">
+            <path d="M1.5 1a.5.5 0 0 0-.5.5v3a.5.5 0 0 1-1 0v-3A1.5 1.5 0 0 1 1.5 0h3a.5.5 0 0 1 0 1h-3zM11 .5a.5.5 0 0 1 .5-.5h3A1.5 1.5 0 0 1 16 1.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 1-.5-.5zM.5 11a.5.5 0 0 1 .5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 1 0 1h-3A1.5 1.5 0 0 1 0 14.5v-3a.5.5 0 0 1 .5-.5zm15 0a.5.5 0 0 1 .5.5v3a1.5 1.5 0 0 1-1.5 1.5h-3a.5.5 0 0 1 0-1h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 1 .5-.5zM3 4.5a.5.5 0 0 1 1 0v7a.5.5 0 0 1-1 0v-7zm2 0a.5.5 0 0 1 1 0v7a.5.5 0 0 1-1 0v-7zm2 0a.5.5 0 0 1 1 0v7a.5.5 0 0 1-1 0v-7zm2 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-7zm3 0a.5.5 0 0 1 1 0v7a.5.5 0 0 1-1 0v-7z" />
+          </svg></span>
+        <input type="text" class="form-control" id="name" name="name" placeholder="642072121..." aria-describedby="addon-wrapping" dir="rtl" />
+      </div>
+    </div>
+    <div class="mb-3">
+      <div class="form-floating">
+        <select class="form-select" id="floatingSelect" style="width: 100%" aria-label="Floating label select example">
+          <option selected>اسم المورد</option>
+          {% for sup in sups %}
+          <option value="{{ sup.id }}">
+            {{ sup.Name }}
+          </option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+    <div class="input-group mb-3">
+      <span class="input-group-text">سعر المنـتج الاصـلـي</span>
+      <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" />
+      <span class="input-group-text">جنية مصري</span>
+    </div>
+    <div class="input-group mb-3">
+      <span class="input-group-text">سـعـر الـمـنـتج الـبيـع</span>
+      <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" />
+      <span class="input-group-text">جنية مصري</span>
+    </div>
+    <div class="input-group mb-3">
+      <span class="input-group-text">سعر المنتج التقسيط</span>
+      <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" />
+      <span class="input-group-text">جنية مصري</span>
+    </div>
+    <div class="input-group mb-3">
+      <span class="input-group-text">العدد</span>
+      <input type="text" class="form-control" aria-label="Text input with dropdown button" />
+      <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+        <option selected>الوحدة</option>
+        {% for sup in sups %}
+        <option value="{{ sup.id }}">
+          {{ sup.Name }}
+        </option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="row">
+      <div class="col"></div>
+      <div class="col">
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="showInput1" name="showInput1">
+      <label class="form-check-label" for="showInput1" style="margin-right: 20px;">
+شراء كاش
+      </label>
+    </div>
+  </div>
+  <div class="col">
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="showInput2" name="showInput2">
+      <label class="form-check-label" for="showInput2" style="margin-right: 20px;">
+     شراء قسط
+      </label>
+    </div></div>
+    <div class="col"></div>
+  </div>
+  <div id="form1" style="display: nonek;"> <div class="input-group mb-3">
+    <span class="input-group-text">اجمالي سعر الشراء</span>
+    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" />
+    <span class="input-group-text">جنية مصري</span>
+  </div>
+  </div>
+
+  <div class="form2" id="form2" style="display: none;">
+    <div class="input-group mb-3">
+      <span class="input-group-text">اجمالي سعر الشراء</span>
+      <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" />
+      <span class="input-group-text">جنية مصري</span>
+    </div>
+    <div class="input-group mb-3">
+      <span class="input-group-text">المقدم</span>
+      <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" />
+      <span class="input-group-text">جنية مصري</span>
+    </div>
+  </div>
+    <button type="submit" class="btn btn-primary" style="width: 100%">
+      إضافة
+    </button>
+  </form>
+</div>
+
+
+
+<script>
+  // Function to show/hide input fields based on checkbox selection
+  document.getElementById("showInput1").addEventListener("change", function() {
+    var input1 = document.getElementById("form1");
+    if (this.checked) {
+      input1.style.display = "block";
+    } else {
+      input1.style.display = "none";
+    }
+  });
+
+  document.getElementById("showInput2").addEventListener("change", function() {
+    var input2 = document.getElementById("form2");
+    if (this.checked) {
+      input2.style.display = "block";
+    } else {
+      input2.style.display = "none";
+    }
+  });
+</script>
+
+
+{% endblock %}

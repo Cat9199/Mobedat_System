@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+        crossorigin="anonymous">
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .login-container {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
+            text-align: center;
+            transition: height 0.3s;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .password-recovery {
+            font-size: 12px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container login-container">
+        <h2 id="stage-title">Enter Username</h2>
+        {{ message }}
+        <form id="login-form" action="/login" method="POST">
+            <div id="username-stage">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Username" name='username' required id="username-input">
+                </div>
+                <button type="button" class="btn btn-primary btn-block" id="next-button">Next</button>
+            </div>
+            <div id="password-stage" class="hidden">
+                  <div id="username-display" class="mt-2"></div>
+                <div class="form-group">
+                    <input type="password" class="form-control" placeholder="Passwored" name="password" required id="password-input">
+                </div>
+                <button type="submit" class="btn btn-success btn-block">Login</button>
+                <div class="password-recovery">
+                    <a href="https://wa.me/201011530060">Did you forget your password?</a>
+                </div>
+                 <!-- عرض الاسم هنا -->
+            </div>
+        </form>
+    </div>
+
+    <script>
+        const usernameStage = document.getElementById("username-stage");
+        const passwordStage = document.getElementById("password-stage");
+        const stageTitle = document.getElementById("stage-title");
+        const nextButton = document.getElementById("next-button");
+        const loginForm = document.getElementById("login-form");
+        const usernameInput = document.getElementById("username-input");
+        const passwordInput = document.getElementById("password-input");
+        const usernameDisplay = document.getElementById("username-display");
+
+        nextButton.addEventListener("click", () => {
+            usernameStage.classList.add("hidden");
+            passwordStage.classList.remove("hidden");
+            stageTitle.textContent = "Enter Passwored";
+            usernameDisplay.textContent = "Username: " + usernameInput.value; // عرض اسم المستخدم
+        });
+
+    </script>
+</body>
+
+</html>

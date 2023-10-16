@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row">
+      <div class="col-8">
+            <form action="/logininfo" method="POST" class="p-4"
+                  style="background-color: #fff; border: 1px solid #ccc;border-radius: 20px;width: 95%;">
+                  <center>
+                        <h2>معلومات تسجيل الدخول</h2>
+                  </center>
+                  <br>
+                  <br>
+                  <div class="mb-3">
+                        <div class="input-group">
+                              <span class="input-group-text" dir="rtl">الاسم</span>
+                              <input type="text" class="form-control" id="name" name="name"
+                                    aria-describedby="addon-wrapping" dir="rtl">
+                        </div>
+                  </div>
+                  <div class="mb-3">
+                        <div class="input-group">
+                              <span class="input-group-text" dir="rtl">اسم المستخدم</span>
+                              <input type="text" class="form-control" id="username" name="username"
+                                    aria-describedby="addon-wrapping" dir="rtl">
+                        </div>
+                  </div>
+                  <div class="mb-3">
+                        <div class="input-group">
+                              <span class="input-group-text" dir="rtl">كلمت المرور</span>
+                              <input type="password" class="form-control" id="passwores" name="passwored"
+                                    aria-describedby="addon-wrapping" dir="rtl">
+                        </div>
+                  </div>
+                  <button type="submit" class="btn btn-primary" style="width: 100%;">إضافة</button>
+            </form>
+      </div>
+      <div class="col-4">
+            <form action="/units" method="POST" class="p-4"
+                  style="background-color: #fff; border: 1px solid #ccc;border-radius: 20px;width: 95%;">
+                  <center>
+                        <h2>اضافت وحدة</h2>
+                  </center>
+                  <br>
+                  
+                  <br>
+                  <div class="mb-3">
+                        <div class="input-group">
+                              <span class="input-group-text" dir="rtl">اسم الوحدة</span>
+                              <input type="text" class="form-control" id="name" name="name" 
+                                    aria-describedby="addon-wrapping" dir="rtl">
+                        </div>
+                  </div>
+
+                  <button type="submit" class="btn btn-primary" style="width: 100%;">إضافة</button>
+
+                  <div class="card" style="width: 100%; margin-top: 10px;">
+                        <div class="card-header">
+                          كل الوحدات
+                        </div>
+                        <ul class="list-group list-group-flush">
+                          <li class="list-group-item">عبوة</li>
+                          <li class="list-group-item">علبة</li>
+                          <li class="list-group-item">كيلو</li>
+                        </ul>
+                      </div>
+            </form>
+      </div>
+     
+</div>
+</div>
+</div>
+
+{% endblock %}

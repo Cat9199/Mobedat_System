@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% block content %}
+<br>
+<div class="row">
+     
+      <div class="col offset-md-1">
+            <div class="input-group mb-3">
+                  <input type="text" id="searchInput" class="form-control" placeholder="إبحث بالاسم او رقم الهاتف">
+            </div>
+      </div>
+      <div class="col-2"><a href="/adduser" type="button" style="color: aliceblue;" class="btn btn-success"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill-add" viewBox="0 0 16 16">
+            <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0Zm-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
+            <path d="M2 13c0 1 1 1 1 1h5.256A4.493 4.493 0 0 1 8 12.5a4.49 4.49 0 0 1 1.544-3.393C9.077 9.038 8.564 9 8 9c-5 0-6 3-6 4Z"/>
+          </svg>اضف عميل</a> </div>
+</div>
+
+<br><br>
+<div class="row row-cols-1 row-cols-md-4 g-2">
+      {% for user in users %}
+      <div class="col">
+            <div class="card h-150 " style="margin-bottom: 20px;">
+      
+                <svg xmlns="http://www.w3.org/2000/svg" width="66" height="66" fill="#183D3D"
+                     class="bi bi-person-fill card-img-top" style="margin-top: 10px;" viewBox="0 0 16 16">
+                    <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
+                </svg>
+                <div class="card-body">
+                    <h5 class="card-title">{{ user.Name }}</h5>
+                    <p class="card-text"><strong>رقم الهاتف :</strong>{{ user.Phone }} <br> <strong>العنوان :</strong>{{ user.Addres }}</p>
+                    <div class="d-flex justify-content-center"> <!-- Center the button group -->
+                        <div class="btn-group" role="group" aria-label="Basic mixed styles example" dir="ltr">
+                            <a href="/delet/{{ user.id }}" type="button" class="btn btn-danger"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                    height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
+                                </svg></a>
+                            <a href="/wallet/{{ user.id }}" type="button" class="btn btn-warning"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                    height="16" fill="currentColor" class="bi bi-wallet" viewBox="0 0 16 16">
+                                    <path
+                                        d="M0 3a2 2 0 0 1 2-2h13.5a.5.5 0 0 1 0 1H15v2a1 1 0 0 1 1 1v8.5a1.5 1.5 0 0 1-1.5 1.5h-12A2.5 2.5 0 0 1 0 12.5V3zm1 1.732V12.5A1.5 1.5 0 0 0 2.5 14h12a.5.5 0 0 0 .5-.5V5H2a1.99 1.99 0 0 1-1-.268zM1 3a1 1 0 0 0 1 1h12V2H2a1 1 0 0 0-1 1z" />
+                                </svg></a>
+                            <a  href="/view/{{ user.id }}" type="button" class="btn btn-success"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                    height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                                    <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
+                                    <path
+                                        d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z" />
+                                </svg></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+</div>
+<script>
+      document.addEventListener('DOMContentLoaded', function () {
+            const searchInput = document.getElementById('searchInput');
+            const cards = document.querySelectorAll('.card');
+
+            searchInput.addEventListener('input', function () {
+                  const searchText = searchInput.value.trim().toLowerCase();
+
+                  cards.forEach(function (card) {
+                        const cardTitle = card.querySelector('.card-title')
+                              .textContent.trim().toLowerCase();
+                        const cardPhone = card.querySelector('.card-text')
+                              .textContent.trim();
+
+                        if (cardTitle.includes(searchText) || cardPhone.includes(
+                                    searchText)) {
+                              card.style.display = 'block'; // Show the card
+                        } else {
+                              card.style.display = 'none'; // Hide the card
+                        }
+                  });
+            });
+      });
+</script>
+
+
+{% endblock %}
