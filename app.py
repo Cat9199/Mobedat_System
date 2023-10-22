@@ -151,6 +151,16 @@ def addsup():
         db.session.commit()
         return render_template('adduser.html', mes=f'تمت اضافت {name} بنجاح')
     return render_template('addsup.html')
+
+@app.route("/addrecit")
+def addrecit():
+    return render_template('addrecit.html')
+@app.route("/assets")
+def assets():
+    return render_template('assets.html')
+@app.route("/notif")
+def notif():
+          return render_template('not.html')
 @app.route('/logout')
 def logout():
     session.pop('username', None)
